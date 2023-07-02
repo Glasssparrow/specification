@@ -10,17 +10,52 @@ from print_to_xls.print_to_xls import print_to_xls
 
 
 # Эти данные должны подгружаться из настроек
-library_path = "Library.xlsx"
-library_meta_list_name = "Категории"
-specification_meta_list_name = "Метаданные"
+main_settings = {
+    "default_priority": 3
+}
+
+library_settings = {
+    "library_path": "Library.xlsx",
+    "library_meta_list_name": "Категории",
+
+    "sheet_name_column": "Sheet name",
+    "subcategory_sort_priority_column": "Sort priority",
+    "is_default_subcategory_column": "Is default subcategory",
+    "category_column": "Category",
+    "category_name_column": "Category name",
+    "category_sort_priority_column": "Category priority",
+    "is_default_category_column": "Is default category"
+}
+
+specification_settings = {
+    "specification_meta_list_name": "Метаданные",
+}
 
 # Этот путь должен быть получен от графического интерфейса
 specification_path = "tests/123.xlsx"
 
 # Получаем данные о данных
-library_meta = get_library_meta(library_path, library_meta_list_name)
-nodes_meta = get_nodes_meta(specification_path,
-                            specification_meta_list_name)
+library_meta = get_library_meta(
+    path=library_settings["library_path"],
+    sheet_name=library_settings["library_meta_list_name"],
+    sheet_name_column=library_settings["sheet_name_column"],
+    subcategory_sort_priority_column=(
+        library_settings["subcategory_sort_priority_column"]),
+    is_default_subcategory_column=(
+        library_settings["is_default_subcategory_column"]),
+    category_column=library_settings["category_column"],
+    category_name_column=(
+        library_settings["category_name_column"]),
+    category_sort_priority_column=(
+        library_settings["category_sort_priority_column"]),
+    is_default_category_column=(
+        library_settings["is_default_category_column"]),
+    default_priority=(
+        main_settings["default_priority"]))
+
+nodes_meta = get_nodes_meta(
+    specification_path,
+    specification_settings["specification_meta_list_name"])
 
 # Читаем библиотеку
 library = get_library(library_meta)
