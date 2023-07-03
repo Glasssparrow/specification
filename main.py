@@ -29,6 +29,11 @@ library_settings = {
 
 specification_settings = {
     "specification_meta_list_name": "Метаданные",
+
+    "type_column": "Тип",
+    "specification_keyword": "спецификация",
+    "nodes_keyword": "узлы",
+    "library_keyword": "библиотека"
 }
 
 # Этот путь должен быть получен от графического интерфейса
@@ -55,7 +60,12 @@ library_meta = get_library_meta(
 
 nodes_meta = get_nodes_meta(
     specification_path,
-    specification_settings["specification_meta_list_name"])
+    specification_settings["specification_meta_list_name"],
+    specification_settings["type_column"],
+    specification_settings["specification_keyword"],
+    specification_settings["nodes_keyword"],
+    specification_settings["library_keyword"]
+)
 
 # Читаем библиотеку
 library = get_library(library_meta)
