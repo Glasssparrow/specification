@@ -16,6 +16,7 @@ def get_library_meta(path, sheet_name,
                      is_default_category_column):
     data = get_data_with_first_column_as_index(path, sheet_name)
     meta = LibraryMeta()
+    meta.path = path
     tmp = {
         "sheet_name": "не выбрано",
         "category": "не выбрано",

@@ -1,4 +1,5 @@
 
 
 def get_library(metadata):
-    pass
+    for index in metadata.data.index:
+        pass
