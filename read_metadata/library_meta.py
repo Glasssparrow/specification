@@ -51,9 +51,22 @@ def get_library_meta(path, sheet_name,
                 meta.data.loc[index, name_for_internal_use] = (
                     default_priority)
         if not isna(data.loc[index, is_default_subcategory_column]):
-            meta.default_subcategory = (
+            default_subcategory = (
                 data.loc[index, is_default_subcategory_column])
         if not isna(data.loc[index, is_default_category_column]):
-            meta.default_subcategory = (
+            default_category = (
                 data.loc[index, is_default_category_column])
+
+    if default_category == "404 Not found":
+        raise ValueError(
+            "Не выбрана категория по умолчанию в основной библиотеке."
+        )
+    if default_subcategory == "404 Not found":
+        raise ValueError(
+            "Не выбрана подкатегория по умолчанию в основной библиотеке."
+        )
+
+    meta.default_subcategory = default_subcategory
+    meta.default_category = default_category
+
     return meta
