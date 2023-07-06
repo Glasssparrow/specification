@@ -15,16 +15,29 @@ main_settings = {
 }
 
 library_settings = {
+    # Данные о местонахождении метаданных
     "library_path": "Library.xlsx",
     "library_meta_list_name": "Категории",
 
+    # Данные для чтения метаданных
     "sheet_name_column": "Sheet name",
     "subcategory_sort_priority_column": "Sort priority",
     "is_default_subcategory_column": "Is default subcategory",
     "category_column": "Category",
     "category_name_column": "Category name",
     "category_sort_priority_column": "Category priority",
-    "is_default_category_column": "Is default category"
+    "is_default_category_column": "Is default category",
+
+    # Данные для чтения библиотеки
+    "priority_column": "Приоритет",
+    "can_have_multiplier_column": "Есть множитель",
+    "name_column": "Наименование",
+    "description_column": "Обозначение",
+    "code_column": "Код",
+    "manufacturer_column": "Производитель",
+    "unit_column": "Единица измерения",
+    "mass_column": "Масса",
+    "comment_column": "Примечание"
 }
 
 specification_settings = {
@@ -68,7 +81,19 @@ nodes_meta = get_nodes_meta(
 )
 
 # Читаем библиотеку
-library = get_library(library_meta)
+library = get_library(
+    metadata=library_meta,
+    priority_column=library_settings["priority_column"],
+    can_have_multiplier_column=library_settings[
+        "can_have_multiplier_column"],
+    name_column=library_settings["name_column"],
+    description_column=library_settings["description_column"],
+    code_column=library_settings["code_column"],
+    manufacturer_column=library_settings["manufacturer_column"],
+    unit_column=library_settings["unit_column"],
+    mass_column=library_settings["mass_column"],
+    comment_column=library_settings["comment_column"]
+)
 add_local_library(library, nodes_meta)
 
 # Читаем узлы
