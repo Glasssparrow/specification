@@ -8,12 +8,13 @@ class LibraryMeta:
         self.data = DataFrame()
 
 
-def get_library_meta(path, sheet_name,
-                     default_priority,
-                     sheet_name_column, subcategory_sort_priority_column,
-                     is_default_subcategory_column, category_column,
-                     category_name_column, category_sort_priority_column,
-                     is_default_category_column):
+def get_library_meta(
+        path, sheet_name,
+        default_priority,
+        sheet_name_column, subcategory_sort_priority_column,
+        is_default_subcategory_column, category_column,
+        category_name_column, category_sort_priority_column,
+        is_default_category_column):
     data = get_data_with_first_column_as_index(path, sheet_name)
     meta = LibraryMeta()
     meta.path = path
