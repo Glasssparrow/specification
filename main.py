@@ -83,6 +83,7 @@ nodes_meta = get_nodes_meta(
 # Читаем библиотеку
 library = get_library(
     metadata=library_meta,
+    default_priority=main_settings["default_priority"],
     priority_column=library_settings["priority_column"],
     can_have_multiplier_column=library_settings[
         "can_have_multiplier_column"],
@@ -94,7 +95,9 @@ library = get_library(
     mass_column=library_settings["mass_column"],
     comment_column=library_settings["comment_column"]
 )
-add_local_library(library, nodes_meta)
+add_local_library(
+    library, nodes_meta, library_meta,
+)
 
 # Читаем узлы
 nodes_quantity = get_nodes_quantity(nodes_meta)
