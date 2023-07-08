@@ -99,7 +99,10 @@ library = get_library(
     comment_column=library_settings["comment_column"]
 )
 add_local_library(
-    library, nodes_meta, library_meta,
+    library=library,
+    nodes_metadata=nodes_meta,
+    library_metadata=library_meta,
+    path=specification_path,
     default_priority=main_settings["default_priority"],
     subcategory_column=library_settings["subcategory_column"],
     priority_column=library_settings["priority_column"],
