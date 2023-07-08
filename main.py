@@ -37,7 +37,10 @@ library_settings = {
     "manufacturer_column": "Производитель",
     "unit_column": "Единица измерения",
     "mass_column": "Масса",
-    "comment_column": "Примечание"
+    "comment_column": "Примечание",
+
+    # Колонка уникальная для локальной библиотеки
+    "subcategory_column": "Категория",
 }
 
 specification_settings = {
@@ -97,6 +100,18 @@ library = get_library(
 )
 add_local_library(
     library, nodes_meta, library_meta,
+    default_priority=main_settings["default_priority"],
+    subcategory_column=library_settings["subcategory_column"],
+    priority_column=library_settings["priority_column"],
+    can_have_multiplier_column=library_settings[
+        "can_have_multiplier_column"],
+    name_column=library_settings["name_column"],
+    description_column=library_settings["description_column"],
+    code_column=library_settings["code_column"],
+    manufacturer_column=library_settings["manufacturer_column"],
+    unit_column=library_settings["unit_column"],
+    mass_column=library_settings["mass_column"],
+    comment_column=library_settings["comment_column"]
 )
 
 # Читаем узлы
