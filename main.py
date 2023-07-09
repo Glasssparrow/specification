@@ -49,7 +49,13 @@ specification_settings = {
     "type_column": "Тип",
     "specification_keyword": "спецификация",
     "nodes_keyword": "узлы",
-    "library_keyword": "библиотека"
+    "library_keyword": "библиотека",
+
+    "node_mark": "node",
+    "ordered_list_mark": "ol",
+    "unordered_list_mark": "ul",
+    "extra_level_of_numeration_mark": "num",
+    "subnode_mark": "subnode",
 }
 
 # Этот путь должен быть получен от графического интерфейса
@@ -118,8 +124,18 @@ add_local_library(
 )
 
 # Читаем узлы
+nodes = get_nodes(
+    metadata=nodes_meta,
+    node_mark=specification_settings["node_mark"],
+    ordered_list_mark=specification_settings["ordered_list_mark"],
+    unordered_list_mark=specification_settings["unordered_list_mark"],
+    extra_level_of_numeration_mark=specification_settings[
+        "extra_level_of_numeration_mark"
+    ],
+    subnode_mark=specification_settings["subnode_mark"]
+)
 nodes_quantity = get_nodes_quantity(nodes_meta)
-nodes = get_nodes(nodes_meta)
+
 
 # Формируем таблицу спецификации
 specification_table = get_specification_table(nodes_quantity,
