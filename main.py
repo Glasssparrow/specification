@@ -125,6 +125,7 @@ add_local_library(
 
 # Читаем узлы
 nodes = get_nodes(
+    path=specification_path,
     metadata=nodes_meta,
     node_mark=specification_settings["node_mark"],
     ordered_list_mark=specification_settings["ordered_list_mark"],
