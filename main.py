@@ -3,7 +3,7 @@ from read_metadata.nodes_meta import get_nodes_meta
 from read_library.main_library import get_library
 from read_library.local_library import add_local_library
 from nodes.quantity import get_nodes_quantity
-from nodes.nodes import get_nodes
+from nodes.nodes import get_raw_nodes, get_nodes
 from calculate.calculate import get_specification_table, get_specification_extra
 from calculate.specification import get_specification
 from print_to_xls.print_to_xls import print_to_xls
@@ -124,7 +124,7 @@ add_local_library(
 )
 
 # Читаем узлы
-nodes = get_nodes(
+nodes_list, ol_list, ul_list, num_list, subnodes_list = get_raw_nodes(
     path=specification_path,
     metadata=nodes_meta,
     node_mark=specification_settings["node_mark"],
@@ -135,6 +135,9 @@ nodes = get_nodes(
     ],
     subnode_mark=specification_settings["subnode_mark"]
 )
+
+nodes = get_nodes(nodes_list, ol_list, ul_list, num_list, subnodes_list)
+
 nodes_quantity = get_nodes_quantity(nodes_meta)
 
 
