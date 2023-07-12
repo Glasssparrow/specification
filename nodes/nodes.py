@@ -1,4 +1,5 @@
 from common.data_with_keywords import DataWithKeywords
+from .classes.raw_nodes import RawNode
 
 
 def get_raw_nodes(
@@ -33,7 +34,7 @@ def get_raw_nodes(
             subnode_mark: subnodes_list,
         }.items():
             for coord in sheet.keys[keyword]:
-                pass
+                data_list.append(RawNode(sheet.data, coord[0], coord[1]))
 
     return nodes_list, ol_list, ul_list, num_list, subnodes_list
 
