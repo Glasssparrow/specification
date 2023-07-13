@@ -35,6 +35,20 @@ def get_raw_nodes(
         }.items():
             for coord in sheet.keys[keyword]:
                 data_list.append(RawNode(sheet.data, coord[0], coord[1]))
+    for tmp_nodes_list in [
+        nodes_list,
+        ol_list,
+        ul_list,
+        num_list,
+        subnodes_list,
+    ]:
+        in_the_list = []
+        for node in tmp_nodes_list:
+            if node.name in in_the_list:
+                raise Exception(
+                    f"Два узла {node.name} одного типа"
+                )
+            in_the_list.append(node.name)
 
     return nodes_list, ol_list, ul_list, num_list, subnodes_list
 
