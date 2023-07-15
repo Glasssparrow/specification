@@ -8,6 +8,7 @@ tmp/
 plan/
 tests/
 test.py
+Test.xlsx
 
 # C extensions
 *.so
