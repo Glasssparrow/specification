@@ -56,6 +56,7 @@ specification_settings = {
     "unordered_list_mark": "ul",
     "extra_level_of_numeration_mark": "num",
     "subnode_mark": "subnode",
+    "quantity_mark": "KEY"
 }
 
 # Этот путь должен быть получен от графического интерфейса
@@ -138,7 +139,11 @@ nodes_list, ol_list, ul_list, num_list, subnodes_list = get_raw_nodes(
 
 nodes = get_nodes(nodes_list, ol_list, ul_list, num_list, subnodes_list)
 
-nodes_quantity = get_nodes_quantity(nodes_meta)
+nodes_quantity = get_nodes_quantity(
+    path=specification_path,
+    metadata=nodes_meta,
+    quantity_mark=specification_settings["quantity_mark"]
+)
 
 
 # Формируем таблицу спецификации
