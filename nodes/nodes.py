@@ -1,5 +1,6 @@
 from common.data_with_keywords import DataWithKeywords
 from .classes.raw_nodes import RawNode
+from .classes.nodes import RegularNode, SpecialNode
 
 
 def get_raw_nodes(
@@ -54,4 +55,11 @@ def get_raw_nodes(
 
 
 def get_nodes(nodes_list, ol_list, ul_list, num_list, subnodes_list):
-    pass
+    regular_nodes_dict = {}
+    for node in nodes_list:
+        new_node = RegularNode(node)
+        if new_node.name in regular_nodes_dict.keys():
+            raise Exception(
+                f"Узел {new_node.name} встречается дважды"
+            )
+        regular_nodes_dict[new_node.name] = new_node
