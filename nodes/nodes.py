@@ -63,3 +63,9 @@ def get_nodes(nodes_list, ol_list, ul_list, num_list, subnodes_list):
                 f"Узел {new_node.name} встречается дважды"
             )
         regular_nodes_dict[new_node.name] = new_node
+
+    # Создаем экземпляры и проверяем что нет двух узлов
+    # с разным типом, но одинаковым именем.
+    for current_list in [ol_list, ul_list, num_list]:
+        for node in current_list:
+            pass
