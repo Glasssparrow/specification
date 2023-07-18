@@ -137,7 +137,9 @@ nodes_list, ol_list, ul_list, num_list, subnodes_list = get_raw_nodes(
     subnode_mark=specification_settings["subnode_mark"]
 )
 
-nodes = get_nodes(nodes_list, ol_list, ul_list, num_list, subnodes_list)
+nodes, special_nodes = get_nodes(
+    nodes_list, ol_list, ul_list, num_list, subnodes_list
+)
 
 nodes_quantity = get_nodes_quantity(
     path=specification_path,

@@ -1,6 +1,7 @@
 from common.data_with_keywords import DataWithKeywords
 from .classes.raw_nodes import RawNode
-from .classes.nodes import RegularNode, SpecialNode
+from .classes.nodes import RegularNode, SpecialNode, edit_str
+from pandas import isna
 
 
 def get_raw_nodes(
@@ -64,8 +65,40 @@ def get_nodes(nodes_list, ol_list, ul_list, num_list, subnodes_list):
             )
         regular_nodes_dict[new_node.name] = new_node
 
+    special_nodes_dict = {}
     # Создаем экземпляры и проверяем что нет двух узлов
     # с разным типом, но одинаковым именем.
-    for current_list in [ol_list, ul_list, num_list]:
+    for current_type, current_list in {
+        "ordered_list": ol_list,
+        "unordered_list": ul_list,
+        "full_numeration": num_list,
+    }.items():
         for node in current_list:
-            pass
+            # Именем нового узла будет тип материала из необработанного узла
+            node_name = edit_str(node.material_name)
+            if (
+                node_name in special_nodes_dict.keys() and
+                special_nodes_dict[node_name].type != current_type
+            ):
+                raise Exception(
+                    f"{node_name} имеет два разных типа, что недопустимо."
+                )
+            special_nodes_dict[node_name] = (
+                SpecialNode(name=node_name, node_type=current_type)
+            )
+            materials_dict = {}
+            for index in node.materials.index:
+                material_name = edit_str(index)
+                if isna(node.materials.loc[index, "multiplier"]):
+                    materials_dict[material_name] = (
+                        node.materials.loc[index, "number"]
+                    )
+                else:
+                    materials_dict[material_name] = (
+                            node.materials.loc[index, "number"] *
+                            node.materials.loc[index, "multiplier"]
+                    )
+            special_nodes_dict[node_name].materials[edit_str(node.name)] = (
+                materials_dict
+            )
+    return regular_nodes_dict, special_nodes_dict

@@ -31,10 +31,10 @@ class RegularNode:
 
 class SpecialNode:
 
-    def __init__(self):
-        self.name = "name"
+    def __init__(self, name, node_type):
+        self.name = name
         # Тип особого узла
-        self.type = "type"
+        self.type = node_type
         self.materials = {
-            "node_name": DataFrame()
+            # "node_name": {}
         }
