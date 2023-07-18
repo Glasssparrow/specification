@@ -137,7 +137,7 @@ nodes_list, ol_list, ul_list, num_list, subnodes_list = get_raw_nodes(
     subnode_mark=specification_settings["subnode_mark"]
 )
 
-nodes, special_nodes = get_nodes(
+regular_nodes, special_nodes = get_nodes(
     nodes_list, ol_list, ul_list, num_list, subnodes_list
 )
 
@@ -149,11 +149,14 @@ nodes_quantity = get_nodes_quantity(
 
 
 # Формируем таблицу спецификации
-specification_table = get_specification_table(nodes_quantity,
-                                              nodes)
-specification_extra = get_specification_extra(nodes_quantity,
-                                              nodes)
-specification = get_specification(specification_table, specification_extra,
-                                  library)
+specification_table = get_specification_table(
+    nodes_quantity, regular_nodes, special_nodes
+)
+specification_extra = get_specification_extra(
+    nodes_quantity, regular_nodes, special_nodes
+)
+specification = get_specification(
+    specification_table, specification_extra, library
+)
 
 print_to_xls(specification)
