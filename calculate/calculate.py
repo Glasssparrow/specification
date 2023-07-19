@@ -37,5 +37,17 @@ def get_dict_of_materials_for_special_nodes(
         quantity, special_nodes
 ):
     materials_dict = {}
-    for node_name, node in special_nodes.items():
-        materials_dict[node_name] = {}
+    for special_node_name, special_node in special_nodes.items():
+        materials_dict[special_node_name] = {}
+        for node_name, node_dict in special_node.materials.items():
+            if node_name not in quantity.keys():
+                raise Exception(
+                    f"Не найден узел {node_name}"
+                )
+            for material, material_quantity in node_dict.items():
+                materials_dict[special_node_name][material] = (
+                    material_quantity * quantity[node_name] +
+                    materials_dict[special_node_name].get(material, 0)
+                )
+
+    return materials_dict
