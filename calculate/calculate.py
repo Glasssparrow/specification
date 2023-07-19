@@ -1,9 +1,8 @@
+from pandas import NA
 
 
 def get_materials_dict(quantity, regular_nodes, special_nodes):
 
-    # Отбросил идею разметки особых узлов в данной функции.
-    # Уровень оптимизации кода не важен, вычислительные мощности в избытке.
     materials_dict = {}
 
     # Заполняем материалы из обычных узлов
@@ -27,12 +26,9 @@ def get_materials_dict(quantity, regular_nodes, special_nodes):
             )
 
     # Добавляем особые узлы в словарь
-    for special_node_name, special_node in special_nodes.items():
-        for node_name, materials in special_node.materials.items():
-            for material, material_quantity in materials.items():
-                materials_dict[material] = (
-                    material_quantity + materials_dict.get(material, 0)
-                )
+    # NA это как раз метка особого узлы
+    for special_node_name in special_nodes.keys():
+        materials_dict[special_node_name] = NA
 
     return materials_dict
 
@@ -40,4 +36,6 @@ def get_materials_dict(quantity, regular_nodes, special_nodes):
 def get_dict_of_materials_for_special_nodes(
         quantity, special_nodes
 ):
-    pass
+    materials_dict = {}
+    for node_name, node in special_nodes.items():
+        materials_dict[node_name] = {}
