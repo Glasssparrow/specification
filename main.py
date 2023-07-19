@@ -4,7 +4,7 @@ from read_library.main_library import get_library
 from read_library.local_library import add_local_library
 from nodes.quantity import get_nodes_quantity
 from nodes.nodes import get_raw_nodes, get_nodes
-from calculate.calculate import get_specification_table, get_specification_extra
+from calculate.calculate import get_materials_dict, get_dict_of_materials_for_special_nodes
 from calculate.specification import get_specification
 from print_to_xls.print_to_xls import print_to_xls
 
@@ -149,11 +149,11 @@ nodes_quantity = get_nodes_quantity(
 
 
 # Формируем таблицу спецификации
-specification_table = get_specification_table(
+specification_table = get_materials_dict(
     nodes_quantity, regular_nodes, special_nodes
 )
-specification_extra = get_specification_extra(
-    nodes_quantity, regular_nodes, special_nodes
+specification_extra = get_dict_of_materials_for_special_nodes(
+    nodes_quantity, special_nodes
 )
 specification = get_specification(
     specification_table, specification_extra, library
