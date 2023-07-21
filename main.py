@@ -156,7 +156,9 @@ specification_extra = get_dict_of_materials_for_special_nodes(
     nodes_quantity, special_nodes
 )
 specification = get_specification(
-    specification_table, specification_extra, library
+    main=specification_table,
+    additional=specification_extra,
+    library=library
 )
 
 print_to_xls(specification)

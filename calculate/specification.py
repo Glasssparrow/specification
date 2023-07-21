@@ -8,6 +8,7 @@ def get_specification(main, additional, library):
         "subcategory_priority",
         "priority",
 
+        "position",
         "name",
         "description",
         "code",
