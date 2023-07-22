@@ -11,7 +11,8 @@ from print_to_xls.print_to_xls import print_to_xls
 
 # Эти данные должны подгружаться из настроек
 main_settings = {
-    "default_priority": 3
+    "default_priority": 3,
+
 }
 
 library_settings = {
@@ -59,8 +60,14 @@ specification_settings = {
     "quantity_mark": "KEY"
 }
 
+output_settings = {
+    "sheet_name": "test",
+    "file_name": "Test"
+}
+
 # Этот путь должен быть получен от графического интерфейса
 specification_path = "tests/123.xlsx"
+output_path = "tests"
 
 # Получаем данные о данных
 library_meta = get_library_meta(
@@ -164,7 +171,7 @@ specification = get_specification(
 
 print_to_xls(
     data=specification,
-    file_name="Test",
-    path="",
-    sheet_name="test",
+    file_name=output_settings["file_name"],
+    path=output_path,
+    sheet_name=output_settings["sheet_name"],
 )
