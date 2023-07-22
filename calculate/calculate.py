@@ -6,6 +6,15 @@ def get_materials_dict(quantity, regular_nodes, special_nodes):
 
     materials_dict = {}
 
+    for node_name in quantity.keys():
+        if (
+            node_name not in regular_nodes.keys() and
+            node_name not in special_nodes.keys()
+        ):
+            raise Exception(
+                f"Не найден узел {node_name}"
+            )
+
     # Заполняем материалы из обычных узлов
     for node_name, node in regular_nodes.items():
         if node_name not in quantity.keys():
