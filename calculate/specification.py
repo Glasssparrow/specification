@@ -81,13 +81,25 @@ def get_specification(main, additional, library, library_metadata):
             special_node.type
         )
 
+    # Проходимся по всем строкам основной части спецификации.
+    # Создаем строку для каждой категории.
+    # Если доходим до строки с особым узлом, добавляем все материалы из
+    # этого особого узла.
+    # Проставляем нумерация:
+    # Каждая категория получает свой номер и каждый материал свой 2 номер.
+    # Для unordered_list нумерацию получает только сам лист
+    # Для ordered_list нумерацию получают только материалы
+    # Для full_numeration нумерацию получают все элементы,
+    # при этом материалы получают первые 2 номера как у листа, и
+    # дополнительно свой 3 номер.
     category = "no category"
     category_name = "404 Not found"
     position_1_number = 0
     position_2_number = 0
-    position_3_number = 0
     for index in main_specification.index:
         # Если новая категория, то добавляем строку с категорией.
+        # В строку категории записывается имя категории из
+        # метаданных библиотеки.
         if (
             not isna(main_specification.loc[index, "category"]) and
             main_specification.loc[index, "category"] != category
@@ -106,9 +118,9 @@ def get_specification(main, additional, library, library_metadata):
                     )
                     break
             specification.loc[category, "name"] = category_name
+            # И нумерация
             position_1_number += 1
             position_2_number = 0
-            position_3_number = 0
             specification.loc[category, "position"] = (
                 f"{str(position_1_number)}."
             )
@@ -156,6 +168,7 @@ def get_specification(main, additional, library, library_metadata):
                 specification.loc[index, "position"] = (
                     f"{position_1_number}.{position_2_number}"
                 )
+        # Нумерация если это не особый узел
         else:
             position_2_number += 1
             specification.loc[index, "position"] = (
