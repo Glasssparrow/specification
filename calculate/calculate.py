@@ -6,10 +6,14 @@ def get_materials_dict(quantity, regular_nodes, special_nodes):
 
     materials_dict = {}
 
+    nodes_from_quantity_for_special_nodes = []
+    for v in special_nodes.values():
+        for x in v.materials.keys():
+            nodes_from_quantity_for_special_nodes.append(x)
     for node_name in quantity.keys():
         if (
             node_name not in regular_nodes.keys() and
-            node_name not in special_nodes.keys()
+            node_name not in nodes_from_quantity_for_special_nodes
         ):
             raise Exception(
                 f"Не найден узел {node_name}"
