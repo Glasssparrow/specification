@@ -63,4 +63,3 @@ def return_settings_to_default():
     write_to_txt_from_dict("settings/Настройки библиотеки.txt",
                            settings_library, ": ",
                            list_splitter=", ")
-
