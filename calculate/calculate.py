@@ -23,7 +23,8 @@ def get_materials_dict(quantity, regular_nodes, special_nodes):
             )
         for material, material_quantity in node.materials.items():
             materials_dict[material] = (
-                material_quantity + materials_dict.get(material, 0)
+                material_quantity * quantity[node_name]
+                + materials_dict.get(material, 0)
             )
 
     # Поднимаем ошибку если обычный узел включает в себя особый
