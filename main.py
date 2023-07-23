@@ -15,83 +15,82 @@ def calculate_and_print_specification(
     library_path,
     output_path,
     default_priority,
-    output_setting_file_name,
-    output_setting_sheet_name,
+    output_file_name,
+    output_file_specification_sheet_name,
 
-    library_setting_meta_list_name,
-    library_setting_sheet_name_column,
-    library_setting_subcategory_sort_priority_column,
-    library_setting_is_default_subcategory_column,
-    library_setting_category_column,
-    library_setting_category_name_column,
-    library_setting_category_sort_priority_column,
-    library_setting_is_default_category_column,
-    library_settings_priority_column,
-    library_setting_can_have_multiplier_column,
-    library_setting_name_column,
-    library_setting_description_column,
-    library_setting_code_column,
-    library_setting_manufacturer_column,
-    library_setting_unit_column,
-    library_setting_mass_column,
-    library_setting_comment_column,
-    library_setting_subcategory_column,
-    library_setting_priority_column,
+    library__meta_list_name,
+    library__sheet_name_column,
+    library__subcategory_sort_priority_column,
+    library__is_default_subcategory_column,
+    library__category_column,
+    library__category_name_column,
+    library__category_sort_priority_column,
+    library__is_default_category_column,
+    library__priority_column,
+    library__can_have_multiplier_column,
+    library__name_column,
+    library__description_column,
+    library__code_column,
+    library__manufacturer_column,
+    library__unit_column,
+    library__mass_column,
+    library__comment_column,
+    library__subcategory_column,
 
-    specification_setting_specification_meta_list_name,
-    specification_setting_type_column,
-    specification_setting_specification_keyword,
-    specification_setting_nodes_keyword,
-    specification_setting_library_keyword,
-    specification_setting_node_mark,
-    specification_setting_ordered_list_mark,
-    specification_setting_unordered_list_mark,
-    specification_setting_extra_level_of_numeration_mark,
-    specification_setting_subnode_mark,
-    specification_setting_quantity_mark,
+    specification__specification_meta_list_name,
+    specification__type_column,
+    specification__specification_keyword,
+    keyword_sheet_for_nodes,
+    keyword_sheet_for_library,
+    regular_node_mark,
+    ordered_list_mark,
+    unordered_list_mark,
+    extra_level_of_numeration_mark,
+    subnode_mark,
+    quantity_mark,
 ):
     # Получаем данные о данных
     library_meta = get_library_meta(
         path=library_path,
-        sheet_name=library_setting_meta_list_name,
-        sheet_name_column=library_setting_sheet_name_column,
+        sheet_name=library__meta_list_name,
+        sheet_name_column=library__sheet_name_column,
         subcategory_sort_priority_column=(
-            library_setting_subcategory_sort_priority_column),
+            library__subcategory_sort_priority_column),
         is_default_subcategory_column=(
-            library_setting_is_default_subcategory_column),
-        category_column=library_setting_category_column,
+            library__is_default_subcategory_column),
+        category_column=library__category_column,
         category_name_column=(
-            library_setting_category_name_column),
+            library__category_name_column),
         category_sort_priority_column=(
-            library_setting_category_sort_priority_column),
+            library__category_sort_priority_column),
         is_default_category_column=(
-            library_setting_is_default_category_column),
+            library__is_default_category_column),
         default_priority=default_priority
     )
 
     nodes_meta = get_nodes_meta(
         path=specification_path,
-        sheet_name=specification_setting_specification_meta_list_name,
-        type_column=specification_setting_type_column,
-        specification_keyword=specification_setting_specification_keyword,
-        nodes_keyword=specification_setting_nodes_keyword,
-        library_keyword=specification_setting_library_keyword,
+        sheet_name=specification__specification_meta_list_name,
+        type_column=specification__type_column,
+        specification_keyword=specification__specification_keyword,
+        nodes_keyword=keyword_sheet_for_nodes,
+        library_keyword=keyword_sheet_for_library,
     )
 
     # Читаем библиотеку
     library = get_library(
         metadata=library_meta,
         default_priority=default_priority,
-        priority_column=library_settings_priority_column,
+        priority_column=library__priority_column,
         can_have_multiplier_column=(
-            library_setting_can_have_multiplier_column),
-        name_column=library_setting_name_column,
-        description_column=library_setting_description_column,
-        code_column=library_setting_code_column,
-        manufacturer_column=library_setting_manufacturer_column,
-        unit_column=library_setting_unit_column,
-        mass_column=library_setting_mass_column,
-        comment_column=library_setting_comment_column,
+            library__can_have_multiplier_column),
+        name_column=library__name_column,
+        description_column=library__description_column,
+        code_column=library__code_column,
+        manufacturer_column=library__manufacturer_column,
+        unit_column=library__unit_column,
+        mass_column=library__mass_column,
+        comment_column=library__comment_column,
     )
     add_local_library(
         library=library,
@@ -99,31 +98,31 @@ def calculate_and_print_specification(
         library_metadata=library_meta,
         path=specification_path,
         default_priority=default_priority,
-        subcategory_column=library_setting_subcategory_column,
-        priority_column=library_setting_priority_column,
+        subcategory_column=library__subcategory_column,
+        priority_column=library__priority_column,
         can_have_multiplier_column=(
-            library_setting_can_have_multiplier_column
+            library__can_have_multiplier_column
         ),
-        name_column=library_setting_name_column,
-        description_column=library_setting_description_column,
-        code_column=library_setting_code_column,
-        manufacturer_column=library_setting_manufacturer_column,
-        unit_column=library_setting_unit_column,
-        mass_column=library_setting_mass_column,
-        comment_column=library_setting_comment_column
+        name_column=library__name_column,
+        description_column=library__description_column,
+        code_column=library__code_column,
+        manufacturer_column=library__manufacturer_column,
+        unit_column=library__unit_column,
+        mass_column=library__mass_column,
+        comment_column=library__comment_column
     )
 
     # Читаем узлы
     nodes_list, ol_list, ul_list, num_list, subnodes_list = get_raw_nodes(
         path=specification_path,
         metadata=nodes_meta,
-        node_mark=specification_setting_node_mark,
-        ordered_list_mark=specification_setting_ordered_list_mark,
-        unordered_list_mark=specification_setting_unordered_list_mark,
+        node_mark=regular_node_mark,
+        ordered_list_mark=ordered_list_mark,
+        unordered_list_mark=unordered_list_mark,
         extra_level_of_numeration_mark=(
-            specification_setting_extra_level_of_numeration_mark
+            extra_level_of_numeration_mark
         ),
-        subnode_mark=specification_setting_subnode_mark
+        subnode_mark=subnode_mark
     )
 
     regular_nodes, special_nodes = get_nodes(
@@ -133,7 +132,7 @@ def calculate_and_print_specification(
     nodes_quantity = get_nodes_quantity(
         path=specification_path,
         metadata=nodes_meta,
-        quantity_mark=specification_setting_quantity_mark
+        quantity_mark=quantity_mark
     )
 
     # Формируем таблицу спецификации
@@ -152,7 +151,7 @@ def calculate_and_print_specification(
 
     print_to_xls(
         data=specification,
-        file_name=output_setting_file_name,
+        file_name=output_file_name,
         path=output_path,
-        sheet_name=output_setting_sheet_name,
+        sheet_name=output_file_specification_sheet_name,
     )
