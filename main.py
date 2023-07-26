@@ -4,6 +4,7 @@ from read_library.main_library import get_library
 from read_library.local_library import add_local_library
 from nodes.quantity import get_nodes_quantity
 from nodes.nodes import get_raw_nodes, get_nodes
+from nodes.check_multiplier import check_multiplier
 from calculate.calculate import get_materials_dict, get_dict_of_materials_for_special_nodes
 from calculate.specification import get_specification
 from print_to_xls.print_to_xls import print_to_xls
@@ -123,6 +124,10 @@ def calculate_and_print_specification(
             extra_level_of_numeration_mark
         ),
         subnode_mark=subnode_mark
+    )
+
+    check_multiplier(
+        nodes_list, ol_list, ul_list, num_list, subnodes_list, library
     )
 
     regular_nodes, special_nodes = get_nodes(
