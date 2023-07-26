@@ -88,179 +88,104 @@ class Gui:
             self.calculate_and_print_specification(
                 specification_path=self.input_path,
                 library_path=(
-                    self.settings_library["Путь к основной библиотеке"]
-                ),
+                    self.settings_library["Путь к основной библиотеке"]),
                 output_path=self.output_path,
                 default_priority=(
-                    self.settings["Приоритет сортировки по умолчанию"]
-                ),
+                    self.settings["Приоритет сортировки по умолчанию"]),
                 output_file_name=(
-                    self.settings["Название итогового файла"]
-                ),
+                    self.settings["Название итогового файла"]),
                 output_file_specification_sheet_name=(
                     self.settings[
-                        "Название листа спецификации в итоговом файле"
-                    ]
-                ),
+                        "Название листа спецификации в итоговом файле"]),
                 library__meta_list_name=(
                     self.settings_library[
-                        "Лист метаданных основной библиотеки"
-                    ]
-                ),
+                        "Лист метаданных основной библиотеки"]),
                 library__sheet_name_column=(
-                    self.settings_library[
-                        "Столбец названий листов"
-                    ]
-                ),
+                    self.settings_library["Столбец названий листов"]),
                 library__subcategory_sort_priority_column=(
                     self.settings_library[
-                        "Столбец приоритета сортировки подкатегории"
-                    ]
-                ),
+                        "Столбец приоритета сортировки подкатегории"]),
                 library__is_default_subcategory_column=(
                     self.settings_library[
-                        "Столбец метки подкатегории по умолчанию"
-                    ]
-                ),
+                        "Столбец метки подкатегории по умолчанию"]),
                 library__category_column=(
-                    self.settings_library[
-                        "Столбец категории"
-                    ]
-                ),
+                    self.settings_library["Столбец категории"]),
                 library__category_name_column=(
-                    self.settings_library[
-                        "Столбец названия категории"
-                    ]
-                ),
+                    self.settings_library["Столбец названия категории"]),
                 library__category_sort_priority_column=(
                     self.settings_library[
-                        "Столбец приоритета сортировки категории"
-                    ]
-                ),
+                        "Столбец приоритета сортировки категории"]),
                 library__is_default_category_column=(
                     self.settings_library[
-                        "Столбец метки категории по умолчанию"
-                    ]
-                ),
+                        "Столбец метки категории по умолчанию"]),
                 library__priority_column=(
                     self.settings_library[
-                        "Столбец приоритета сортировки"
-                    ]
-                ),
+                        "Столбец приоритета сортировки"]),
                 library__can_have_multiplier_column=(
                     self.settings_library[
-                        "Столбец с меткой для материалов с множителем"
-                    ]
-                ),
+                        "Столбец с меткой для материалов с множителем"]),
                 library__name_column=(
-                    self.settings_library[
-                        "Столбец наименования"
-                    ]
-                ),
+                    self.settings_library["Столбец наименования"]),
                 library__description_column=(
-                    self.settings_library[
-                        "Столбец обозначения"
-                    ]
-                ),
+                    self.settings_library["Столбец обозначения"]),
                 library__code_column=(
-                    self.settings_library[
-                        "Столбец кода оборудования"
-                    ]
-                ),
+                    self.settings_library["Столбец кода оборудования"]),
                 library__manufacturer_column=(
-                    self.settings_library[
-                        "Столбец производителя"
-                    ]
-                ),
+                    self.settings_library["Столбец производителя"]),
                 library__unit_column=(
-                    self.settings_library[
-                        "Столбец единицы измерения"
-                    ]
-                ),
+                    self.settings_library["Столбец единицы измерения"]),
                 library__mass_column=(
-                    self.settings_library[
-                        "Столбец массы"
-                    ]
-                ),
+                    self.settings_library["Столбец массы"]),
                 library__comment_column=(
-                    self.settings_library[
-                        "Столбец примечания"
-                    ]
-                ),
+                    self.settings_library["Столбец примечания"]),
                 library__subcategory_column=(
-                    self.settings_library[
-                        "Столбец подкатегории материала"
-                    ]
-                ),
+                    self.settings_library["Столбец подкатегории материала"]),
 
                 specification__specification_meta_list_name=(
-                    self.settings_specification[
-                        "Лист метаданных"
-                    ]
-                ),
+                    self.settings_specification["Лист метаданных"]),
                 specification__type_column=(
-                    self.settings_specification[
-                        "Столбец с типами листов"
-                    ]
-                ),
+                    self.settings_specification["Столбец с типами листов"]),
                 specification__specification_keyword=(
                     self.settings_specification[
-                        "Ключевое слово для листов с количеством узлов"
-                    ]
-                ),
+                        "Ключевое слово для листов с количеством узлов"]),
                 keyword_sheet_for_nodes=(
                     self.settings_specification[
-                        "Ключевое слово для листов с узлами"
-                    ]
-                ),
+                        "Ключевое слово для листов с узлами"]),
                 keyword_sheet_for_library=(
                     self.settings_specification[
-                        "Ключевое слово для листов с локальной библиотекой"
-                    ]
-                ),
+                        "Ключевое слово для листов с локальной библиотекой"]),
                 regular_node_mark=(
-                    self.settings[
-                        "Метка обычного узла"
-                    ]
-                ),
+                    self.settings["Метка обычного узла"]),
                 ordered_list_mark=(
                     self.settings[
-                        "Метка особого узла с нумерацией материалов"
-                    ]
-                ),
+                        "Метка особого узла с нумерацией материалов"]),
                 unordered_list_mark=(
                     self.settings[
-                        "Метка особого узла без нумерации материалов"
-                    ]
-                ),
+                        "Метка особого узла без нумерации материалов"]),
                 extra_level_of_numeration_mark=(
                     self.settings[
-                        "Метка особого узла с дополнительным уровнем нумерации"
-                    ]
-                ),
-                subnode_mark=(
-                    self.settings[
-                        "Метка подузла"
-                    ]
-                ),
-                quantity_mark=(
-                    self.settings[
-                        "Метка количества узлов"
-                    ]
-                ),
+                        "Метка особого узла с дополнительным "
+                        "уровнем нумерации"]),
+                subnode_mark=(self.settings["Метка подузла"]),
+                quantity_mark=(self.settings["Метка количества узлов"]),
             )
             time = datetime.now()
 
-            text = ("Расчет выполнен успешно. Время " + str(time.hour) +
-                    ":" + str(time.minute) + ":" + str(time.second) + "\n")
+            text = (f"Расчет выполнен успешно. Время {str(time.hour)}"
+                    f":{str(time.minute)}:{str(time.second)}\n")
+            with open("log/log_for_gui.log", "r") as file:
+                text_list = file.read().split("\n")
+                for string in text_list:
+                    text = f"{text}{string[10:]}\n"
             self._text_warning.configure(text=text)
         except Exception as error:
             time = datetime.now()
             text = ("Расчет выполнен не был. Время " + str(time.hour) +
                     ":" + str(time.minute) + ":" + str(time.second) + "\n")
             for er in error.args:
-                text += er + "\n"
+                text += str(er) + "\n"
             self._text_warning.configure(text=text)
+            raise
 
     def _read_settings(self):
         """

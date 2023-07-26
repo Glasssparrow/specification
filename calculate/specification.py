@@ -1,5 +1,6 @@
 from pandas import DataFrame, isna
 from math import ceil
+from logging import info
 
 
 def get_datasheet(dictionary, library):
@@ -39,6 +40,7 @@ def get_datasheet(dictionary, library):
                     library.loc[k, column]
                 )
         else:
+            info(f"{k} не найдено в библиотеке")
             for column in [
                 "category_sort_priority",
                 "subcategory_sort_priority",
