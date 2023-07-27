@@ -126,6 +126,8 @@ def calculate_and_print_specification(
         subnode_mark=subnode_mark
     )
 
+    # Проверяем что множитель есть только у материалов с соответствующей
+    # меткой в библиотеке.
     check_multiplier(
         nodes_list, ol_list, ul_list, num_list, subnodes_list, library
     )
