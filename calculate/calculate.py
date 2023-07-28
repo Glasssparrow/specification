@@ -1,5 +1,5 @@
 from pandas import NA
-from .classes.results import SpecialNode
+from .classes.results import SpecialNodeFinal
 
 
 def get_materials_dict(quantity, regular_nodes, special_nodes):
@@ -59,7 +59,7 @@ def get_dict_of_materials_for_special_nodes(
     # записываем количество материалов с учетом количества узлов
     # в новый узел.
     for special_node_name, special_node in special_nodes.items():
-        materials_dict[special_node_name] = SpecialNode()
+        materials_dict[special_node_name] = SpecialNodeFinal()
         materials_dict[special_node_name].type = special_node.type
         for node_name, node_dict in special_node.materials.items():
             if node_name not in quantity.keys():

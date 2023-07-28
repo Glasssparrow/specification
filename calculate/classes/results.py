@@ -1,6 +1,6 @@
 
 
-class SpecialNode(dict):
+class SpecialNodeFinal(dict):
 
     def __init__(self, **kwargs):
         self.quantity = 0
