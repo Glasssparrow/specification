@@ -28,4 +28,3 @@ def check_multiplier(
                         ):
                             info(f"{material} в узле {current_node.name}"
                                  f" должен иметь множитель.")
-
