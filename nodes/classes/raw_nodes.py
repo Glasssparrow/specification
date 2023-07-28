@@ -30,13 +30,14 @@ class RawNode:
         # Проверяем категории узла
         if (
                 not isna(dataframe.iloc[x, y - 1]) and
-                not isinstance(dataframe.iloc[x, y - 1], str)
+                not isinstance(dataframe.iloc[x, y - 1],
+                               (str, int, float))
         ):
             raise Exception(
                 "Ячейка категорий узла должна содержать"
-                " строку или быть пустой "
+                " строку, число или быть пустой "
                 f"Ошибка возникла в узле {self.name}"
-                " Метка на строке " +
+                " Метка на строке "
                 f"{str(x + 2)} на столбце {str(y + 1)}"
             )
 

@@ -101,4 +101,75 @@ def get_nodes(nodes_list, ol_list, ul_list, num_list, subnodes_list):
             special_nodes_dict[node_name].materials[edit_str(node.name)] = (
                 materials_dict
             )
+
+    # Формируем подузлы
+    levels_list = []
+    for node in subnodes_list:
+        if node.material_name == "default":
+            node.material_name = 0
+        elif not isinstance(node.material_name, (int, float)):
+            raise Exception(
+                f"{node.name} имеет неправильную метку уровня подузла. "
+                f"Метка подузла должна быть числом (или быть пуста)."
+            )
+
+        level = node.material_name
+        if level not in levels_list:
+            levels_list.append(level)
+
+    levels_list.sort(reverse=True)
+
+    subnodes = {}
+    for node in subnodes_list:
+        if node.name in subnodes.keys():
+            raise Exception(f"{node.name} встречается дважды.")
+        subnodes[node.name] = {}
+
+    for number in levels_list:
+        for node in subnodes_list:
+            if node.material_name != number:
+                continue
+
+            data = node.materials
+
+            for index in data.index:
+                quantity = data.loc[index, "number"]
+                if not isna(data.loc[index, "multiplier"]):
+                    quantity *= data.loc[index, "multiplier"]
+                if index in subnodes.keys():
+                    for k, v in subnodes[index].items():
+                        subnodes[node.name][k] = (
+                            quantity * v +
+                            subnodes[node.name].get(k, 0)
+                        )
+                else:
+                    subnodes[node.name][index] = (
+                        quantity +
+                        subnodes[node.name].get(index, 0)
+                    )
+
+    for node_name, node in regular_nodes_dict.items():
+        put_subnodes_into_dict(node.materials, subnodes, levels_list)
+    for special_node_name, special_node in special_nodes_dict.items():
+        for regular_node_name, dictionary in special_node.materials.items():
+            put_subnodes_into_dict(dictionary, subnodes, levels_list)
+
     return regular_nodes_dict, special_nodes_dict
+
+
+def put_subnodes_into_dict(dictionary, subnodes, levels_list):
+
+    # Чтобы не идти сквозь словарь который меняем
+    iterator = dictionary.copy()
+
+    node_materials = dictionary
+    for material_name, material_quantity in iterator.items():
+        if material_name in subnodes.keys():
+            del node_materials[material_name]
+            for subnode_material, subnode_material_quantity in subnodes[
+                material_name
+            ].items():
+                node_materials[subnode_material] = (
+                    subnode_material_quantity * material_quantity +
+                    node_materials.get(subnode_material, 0)
+                )
