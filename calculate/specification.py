@@ -116,7 +116,8 @@ def get_specification(main, additional, library, library_metadata):
                     ] == category
                 ):
                     category_name = (
-                        library_metadata.data.loc[subcategory, "category"]
+                        library_metadata.data.loc[subcategory,
+                                                  "category_name"]
                     )
                     break
             specification.loc[category, "name"] = category_name
