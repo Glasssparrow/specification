@@ -86,6 +86,7 @@ class Gui:
     def _calculate(self):
         try:
             self.calculate_and_print_specification(
+                allow_nodes_without_quantity=True,
                 specification_path=self.input_path,
                 library_path=(
                     self.settings_library["Путь к основной библиотеке"]),

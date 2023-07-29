@@ -6,11 +6,13 @@ from nodes.quantity import get_nodes_quantity
 from nodes.nodes import get_raw_nodes, get_nodes
 from nodes.check_multiplier import check_multiplier
 from calculate.calculate import get_materials_dict, get_dict_of_materials_for_special_nodes
+from calculate.nodes_without_quantity import delete_nodes_without_quantity
 from calculate.specification import get_specification
 from print_to_xls.print_to_xls import print_to_xls
 
 
 def calculate_and_print_specification(
+    allow_nodes_without_quantity,
     specification_path,
 
     library_path,
@@ -141,6 +143,14 @@ def calculate_and_print_specification(
         metadata=nodes_meta,
         quantity_mark=quantity_mark
     )
+
+    # Удаляем узлы количества для которых нет
+    if allow_nodes_without_quantity:
+        delete_nodes_without_quantity(
+            quantity=nodes_quantity,
+            regular_nodes=regular_nodes,
+            special_nodes=special_nodes,
+        )
 
     # Формируем таблицу спецификации
     specification_table = get_materials_dict(
