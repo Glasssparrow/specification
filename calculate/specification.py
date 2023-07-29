@@ -129,6 +129,9 @@ def get_specification(main, additional, library, library_metadata):
             )
         # Заполняем данные для материала
         for column in [
+            "category_sort_priority", "subcategory_sort_priority",
+            "sort_priority",
+            "category", "subcategory",
             "name", "description",
             "code", "manufacturer", "unit",
             "quantity", "mass", "comment",
@@ -141,6 +144,9 @@ def get_specification(main, additional, library, library_metadata):
             position_3_number = 0
             for material in additional_specifications[index].index:
                 for column in [
+                    "category_sort_priority", "subcategory_sort_priority",
+                    "sort_priority",
+                    "category", "subcategory",
                     "name", "description",
                     "code", "manufacturer", "unit",
                     "quantity", "mass", "comment",
