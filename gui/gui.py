@@ -1,7 +1,7 @@
 from .settings.settings import return_settings_to_default
 from .settings.read_txt_as_dict import read_as_dict
 from tkinter import filedialog as fd
-from tkinter import Button, Tk, Label
+from tkinter import Button, Tk, Label, Checkbutton, BooleanVar
 from datetime import datetime
 
 
@@ -86,7 +86,8 @@ class Gui:
     def _calculate(self):
         try:
             self.calculate_and_print_specification(
-                allow_nodes_without_quantity=True,
+                allow_nodes_without_quantity=(
+                    self.allow_nodes_without_quantity.get()),
                 specification_path=self.input_path,
                 library_path=(
                     self.settings_library["Путь к основной библиотеке"]),
@@ -264,11 +265,20 @@ class Gui:
         self._calculate_button.grid(columnspan=6, column=0,
                                     row=3)
 
+        self.allow_nodes_without_quantity = BooleanVar(value=True)
+
+        self._checkbutton = Checkbutton(
+            self._window, text="доп. узлы",
+            variable=self.allow_nodes_without_quantity,
+            onvalue=True, offvalue=False,
+        )
+        self._checkbutton.grid(column=0, row=4)
+
         # Текст ошибки
         self._text_warning = (
             Label(text="Расчет еще не выполнялся"))
         self._text_warning.grid(columnspan=6,
-                                column=0, row=4)
+                                column=0, row=5)
 
         # Запускаем окно
         self._window.mainloop()
