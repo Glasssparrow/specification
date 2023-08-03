@@ -21,10 +21,10 @@ def check_multiplier(
                     if library.loc[material, "can_have_multiplier"]:
                         if isna(materials.loc[index, "multiplier"]):
                             info(f"{material} в узле {current_node.name}"
-                                 f" не должен иметь множителя.")
+                                 f" должен иметь множитель.")
                     else:
                         if not isna(
                             materials.loc[index, "multiplier"]
                         ):
                             info(f"{material} в узле {current_node.name}"
-                                 f" должен иметь множитель.")
+                                 f" не должен иметь множителя.")
