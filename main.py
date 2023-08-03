@@ -9,6 +9,7 @@ from calculate.calculate import get_materials_dict, get_dict_of_materials_for_sp
 from calculate.nodes_without_quantity import delete_nodes_without_quantity
 from calculate.specification import get_specification
 from print_to_xls.print_to_xls import print_to_xls
+from logging import basicConfig, INFO
 
 
 def calculate_and_print_specification(
@@ -52,6 +53,11 @@ def calculate_and_print_specification(
     subnode_mark,
     quantity_mark,
 ):
+    # Очищаем лог файл
+    basicConfig(level=INFO,
+                filename=f"log/log_for_gui.log",
+                filemode="w",
+                force=True)
     # Получаем данные о данных
     library_meta = get_library_meta(
         path=library_path,
