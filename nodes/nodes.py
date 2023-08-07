@@ -166,9 +166,10 @@ def put_subnodes_into_dict(dictionary, subnodes, levels_list):
     for material_name, material_quantity in iterator.items():
         if material_name in subnodes.keys():
             del node_materials[material_name]
-            for subnode_material, subnode_material_quantity in subnodes[
+            for subnode_material_raw, subnode_material_quantity in subnodes[
                 material_name
             ].items():
+                subnode_material = subnode_material_raw.lower().strip()
                 node_materials[subnode_material] = (
                     subnode_material_quantity * material_quantity +
                     node_materials.get(subnode_material, 0)
