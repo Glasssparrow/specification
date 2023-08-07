@@ -52,11 +52,10 @@ def get_library_meta(
                 meta.data.loc[index, name_for_internal_use] = (
                     default_priority)
         if not isna(data.loc[index, is_default_subcategory_column]):
-            default_subcategory = (
-                data.loc[index, is_default_subcategory_column])
+            default_subcategory = index
         if not isna(data.loc[index, is_default_category_column]):
             default_category = (
-                data.loc[index, is_default_category_column])
+                data.loc[index, category_column])
 
     if default_category == "404 Not found":
         raise ValueError(

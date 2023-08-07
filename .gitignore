@@ -9,6 +9,7 @@ plan/
 tests/
 test.py
 Test.xlsx
+~$Library.xlsx
 
 # C extensions
 *.so
