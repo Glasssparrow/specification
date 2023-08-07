@@ -21,7 +21,8 @@ def get_library_meta(
     tmp = {
         "sheet_name": "не выбрано",
         "category": "не выбрано",
-        "category_name": "не выбрано"
+        "category_name": "не выбрано",
+        "category_sort_priority": 0,
     }
     default_subcategory = "404 Not found"
     # Переносим таблицу заполняя пустоты и используя
@@ -30,7 +31,8 @@ def get_library_meta(
         for name_for_internal_use, source_data_name in {
             "sheet_name": sheet_name_column,
             "category": category_column,
-            "category_name": category_name_column
+            "category_name": category_name_column,
+            "category_sort_priority": category_sort_priority_column,
         }.items():
             if not isna(data.loc[index, source_data_name]):
                 meta.data.loc[index, name_for_internal_use] = (
@@ -42,7 +44,6 @@ def get_library_meta(
                     tmp[name_for_internal_use])
         for name_for_internal_use, source_data_name in {
             "subcategory_sort_priority": subcategory_sort_priority_column,
-            "category_sort_priority": category_sort_priority_column
         }.items():
             if not isna(data.loc[index, source_data_name]):
                 meta.data.loc[index, name_for_internal_use] = (
