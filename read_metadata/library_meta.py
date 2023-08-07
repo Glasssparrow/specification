@@ -14,7 +14,7 @@ def get_library_meta(
         sheet_name_column, subcategory_sort_priority_column,
         is_default_subcategory_column, category_column,
         category_name_column, category_sort_priority_column,
-        is_default_category_column):
+        ):
     data = get_data_with_first_column_as_index(path, sheet_name)
     meta = LibraryMeta()
     meta.path = path
@@ -24,7 +24,6 @@ def get_library_meta(
         "category_name": "не выбрано"
     }
     default_subcategory = "404 Not found"
-    default_category = "404 Not found"
     # Переносим таблицу заполняя пустоты и используя
     # названия столбцов которые далее будут применяться в программе.
     for index in data.index:
@@ -53,20 +52,12 @@ def get_library_meta(
                     default_priority)
         if not isna(data.loc[index, is_default_subcategory_column]):
             default_subcategory = index
-        if not isna(data.loc[index, is_default_category_column]):
-            default_category = (
-                data.loc[index, category_column])
 
-    if default_category == "404 Not found":
-        raise ValueError(
-            "Не выбрана категория по умолчанию в основной библиотеке."
-        )
     if default_subcategory == "404 Not found":
         raise ValueError(
             "Не выбрана подкатегория по умолчанию в основной библиотеке."
         )
 
     meta.default_subcategory = default_subcategory
-    meta.default_category = default_category
 
     return meta

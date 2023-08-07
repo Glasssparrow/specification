@@ -72,8 +72,6 @@ def calculate_and_print_specification(
             library__category_name_column),
         category_sort_priority_column=(
             library__category_sort_priority_column),
-        is_default_category_column=(
-            library__is_default_category_column),
         default_priority=default_priority
     )
 
