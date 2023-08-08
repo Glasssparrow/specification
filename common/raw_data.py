@@ -19,6 +19,10 @@ def get_data_with_first_column_as_index(path_to_file, sheet_name):
             f" имеет листа {sheet_name}"
         )
     # Используем первый столбец в качестве индексов строк
-    data.index = data.iloc[:, 0]
+    try:
+        data.index = data.iloc[:, 0]
+    except IndexError:
+        raise Exception(f"Вероятно лист {sheet_name} "
+                        f"в файле {path_to_file} пуст.")
     data.pop(data.columns[0])
     return data
