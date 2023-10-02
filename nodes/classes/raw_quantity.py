@@ -43,6 +43,7 @@ class RawQuantityOfNodes:
             # с тем что первая строка уходит под шапку
 
             # Убираем пустоты с обеих сторон
+            print(material)
             material.strip()
             self.nodes_quantity.loc[material, "quantity"] = number
 
@@ -50,6 +51,6 @@ class RawQuantityOfNodes:
 
         if node_number == 1:
             raise Exception(
-                "Спецификация узла " +
-                f"{dataframe.iloc[x - 1, y - 1]} пуста."
+                "Для группы узлов " +
+                f"'{dataframe.iloc[x, y + 1]}' отсутствуют данные."
             )
