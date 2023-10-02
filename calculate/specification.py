@@ -167,7 +167,7 @@ def get_specification(main, additional, library, library_metadata):
                 elif types_of_special_nodes[index] == "full_numeration":
                     position_3_number += 1
                     specification.loc[f"{index}.{material}", "position"] = (
-                        f"{position_1_number}.{position_2_number}."
+                        f"{position_1_number}.{position_2_number+1}."
                         f"{position_3_number}"
                     )
             if types_of_special_nodes[index] in [
