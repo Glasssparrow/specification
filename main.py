@@ -142,6 +142,7 @@ def calculate_and_print_specification(
         nodes_list, ol_list, ul_list, num_list, subnodes_list
     )
 
+    # Получаем количество узлов
     nodes_quantity = get_nodes_quantity(
         path=specification_path,
         metadata=nodes_meta,
