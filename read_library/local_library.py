@@ -1,5 +1,6 @@
 from common.raw_data import get_data_with_first_column_as_index
 from pandas import isna
+from pandas.core.series import Series as PandasSeries
 
 
 def edit_str(string):
@@ -24,6 +25,15 @@ def add_local_library(
     for sheet_name in sheet_list:
         sheet = get_data_with_first_column_as_index(path, sheet_name)
         for index in sheet.index:
+            # Проверяем не встречается ли материал дважды на листе
+            # Если материал встречается дважды, то pandas
+            # создаст лист в ячейке.
+            # Проверяем содержится ли в ячейке лист
+            if isinstance(sheet.loc[index, priority_column], PandasSeries):
+                raise Exception(
+                    f"Материал {index} занесен в локальную библиотеку "
+                    f"дважды, причем на одном листе."
+                )
             index_for_library = edit_str(index)
             if (
                 (sheet.loc[index, subcategory_column] not in
