@@ -1,5 +1,7 @@
 from common.raw_data import get_data_with_first_column_as_index
 from pandas import DataFrame, isna
+from pandas.core.series import Series as PandasSeries
+import logging
 
 
 def get_library(metadata, default_priority,
@@ -13,10 +15,21 @@ def get_library(metadata, default_priority,
             metadata.path, metadata.data.loc[subcategory, "sheet_name"]
         )
         for index in sheet.index:
+            # Проверяем был ли занесен материал в библиотеку ранее
             if index in lib.index:
+                # При дублировании поднимаем ошибку
                 raise Exception(
                     f"Материал {index} занесен в основную библиотеку "
                     f"дважды."
+                )
+            # Проверяем не встречается ли материал дважды на листе
+            # Если материал встречается дважды, то pandas
+            # создаст лист в ячейке.
+            # Проверяем содержится ли в ячейке лист
+            if isinstance(sheet.loc[index, priority_column], PandasSeries):
+                raise Exception(
+                    f"Материал {index} занесен в основную библиотеку "
+                    f"дважды, причем на одном листе."
                 )
             lib.loc[index, "category"] = (
                 metadata.data.loc[subcategory, "category"]

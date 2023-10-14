@@ -43,7 +43,6 @@ class RawQuantityOfNodes:
             # с тем что первая строка уходит под шапку
 
             # Убираем пустоты с обеих сторон
-            print(material)
             material.strip()
             self.nodes_quantity.loc[material, "quantity"] = number
 
