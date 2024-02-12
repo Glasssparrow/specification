@@ -9,6 +9,9 @@ plan/
 tests/
 test.py
 Test.xlsx
+
+# Library
+Library.xlsx
 ~$Library.xlsx
 
 # C extensions
