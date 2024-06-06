@@ -4,7 +4,7 @@ from .write_dict_as_txt import write_to_txt_from_dict
 def return_settings_to_default():
 
     settings = {
-        "Путь по умолчанию": "D:/",
+        "Путь по умолчанию": "C:/",
 
         "Приоритет сортировки по умолчанию": 3,
         "Название итогового файла": "Посчитанная спецификация",
