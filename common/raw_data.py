@@ -15,7 +15,7 @@ def get_data_with_first_column_as_index(path_to_file, sheet_name):
         )
     except BaseException:
         raise FileNotFoundError(
-            f"Файл {path_to_file}или не является таблицей xls, или не"
+            f"Файл {path_to_file} или не является таблицей xls, или не"
             f" имеет листа {sheet_name}"
         )
     # Используем первый столбец в качестве индексов строк
