@@ -3,17 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# temporary files
-tmp/
-plan/
-tests/
-test.py
-Test.xlsx
-
-# Library
-Library.xlsx
-~$Library.xlsx
-
 # C extensions
 *.so
 
